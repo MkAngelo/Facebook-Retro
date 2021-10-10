@@ -1,3 +1,9 @@
+"""User's admin dash."""
+
+# Django
 from django.contrib import admin
 
-# Register your models here.
+# Models
+from users.models import Profile
+
+admin.site.register(Profile)
