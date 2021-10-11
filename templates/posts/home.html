@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+{% block head_content %}
+<title>Facebook | Home</title>
+{% endblock head_content %}
+
+
+{% block container %}
+    <div class="post-now">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form action="">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">¿Qué estás pensando?</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <label for="exampleFormControlFile1">Sube una foto</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <button id="publicar" type="button" class="btn btn-primary btn-lg">Publicar</button>
+                </form>
+            </div>  
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-8 offset-lg-2">
+            <div class="media">
+                <img class="mr-3 rounded-circle" src="{{ post.user.picture }}" alt="{{ post.user.name }}" width="50px" height="50px">
+                <div class="media-body">
+                    <h2 class='mt-0'>{{ post.user.name }}</h2>
+                    <small>
+                        {{ post.timestamp }}
+                    </small>                   
+                </div>
+            </div>
+            <div class="content-post">
+                <h3 class="ml-1 mt-1">{{ post.content }}</h3>
+            </div>
+            {% if post.photo %}
+                <img class="img-fluid mt-3 border rounded" src="{{ post.photo }}" alt="{{ post.content }}">
+            {% endif %}
+            <div class="actions-feed">
+                <a href="">Like</a> - <a href="">Comentar</a> - <a href="">Compartir</a>
+            </div>
+            <div class="feedback">
+                <strong>{{ post.likes }}</strong> likes 
+                <strong>{{ post.comments }}</strong> comments 
+                <strong>{{ post.share }}</strong> shares
+            </div>   
+        </div>
+
+        {% endfor %}
+    </div>
+{% endblock container %}
+    
