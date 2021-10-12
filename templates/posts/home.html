@@ -34,12 +34,14 @@
                     </div>
                     <label for="exampleFormControlFile1">Sube una foto</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    <button id="publicar" type="button" class="btn btn-primary btn-lg">Publicar</button>
+                    <button class="btn btn-primary btn-block mt-5" type="submit">Publicar</button>
+                    <br>
                 </form>
             </div>  
         </div>
     </div>
     <br>
+
     {% for post in posts %}
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -54,29 +56,31 @@
                 {% endif %}
 
                 <div class="media-body">
-                    <h2 class='mt-0'>{{ post.user.name }}</h2>
+                    <h4 class='mt-0'>{{ post.user.name }}</h4>
                     <small>
                         {{ post.timestamp }} <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
                     </small>                   
                 </div>
             </div>
             <div class="content-post">
-                <h3 class="ml-1 mt-1">{{ post.content }}</h3>
+                <br>
+                <p class="ml-1 mt-1">{{ post.content }}</p>
             </div>
             {% if post.photo %}
                 <img class="img-fluid mt-3 border rounded" src="{{ post.photo }}" alt="{{ post.content }}">
             {% endif %}
-            <div class="actions-feed">
+            <div class="reactions"><br>
                 <a href=""><strong>Like</strong></a> - <a href=""><strong>Comentar</strong></a> - <a href=""><strong>Compartir</strong></a>
-            </div>
-            <div class="feedback">
-                <strong>{{ post.likes }}</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
-                <strong>{{ post.comments }}</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
-                <strong>{{ post.share }}</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
-            </div>   
+                <div class="counters">
+                    <strong>{{ post.likes }}</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
+                    <strong>{{ post.comments }}</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
+                    <strong>{{ post.share }}</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
+                </div>
+            </div> 
         </div>
     </div>
     <br>
     {% endfor %}
+
 {% endblock container %}
     

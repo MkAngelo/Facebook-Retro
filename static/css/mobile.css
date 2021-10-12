@@ -1,0 +1,12 @@
+body{
+    background-color: gainsboro;
+}
+.col-lg-8{
+    background-color: white;
+}
+.counters{
+    text-align: right;
+}
+.navbar{
+    font-family: 'Maven Pro', sans-serif;
+}
