@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Maven Pro', sans-serif;
+}
+body {
+    font-size: 62.5%;
+}
+
+.map-log{
+    /* background-color: aqua; */
+    position: absolute;
+    left: 0;
+    width: 55%;
+    height: 800px;
+}
+.map-log img{
+    position: absolute;
+    top: 300px;
+    left: 100px;
+    width: 900px;
+}
+.map-log label{
+    color:darkslategrey;
+    font-size: 1.6rem;
+    position: relative;
+    top: 190px;
+    left: 150px;
+}
+.sign{
+    /* background-color: red; */
+    color: darkslategrey;
+    position: absolute;
+    top: 150px;
+    right: 0;
+    width: 45%;
+    height: 700px;
+}
+.forms{
+    /* background-color: blue; */
+    width: 90%;
+    margin: 50px;
+    text-align: center;
+}
+.sign div{
+    font-size: 1.4rem;
+    text-align: center;
+}

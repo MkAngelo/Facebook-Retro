@@ -7,5 +7,5 @@ from posts import views
 
 
 urlpatterns = [
-    path('home/', views.home)
+    path('', views.home)
 ]
