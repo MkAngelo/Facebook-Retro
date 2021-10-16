@@ -8,8 +8,43 @@
 {% block container %}
     {% load static %}
     <main class="container-profile">
-        <div class="muro">
-            <!-- <img src="{% static 'img/cover.jpg' %}" alt=""> -->
+        <div class="cover">
+            <img src="{% static 'img/cover.jpg' %}" alt="" width="100%">
+        </div>
+        <div class="picture">
+            {% if request.user.profile.picture %}
+                <img src="{{ request.user.profile.picture.url }}" />
+            {% elif post.user.sex == 'hombre' %}
+                <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}">
+            {% else %}
+                <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}">
+            {% endif %}
+        </div>
+        <div class="name">
+            <br>
+            <strong>
+                <h3>{{ request.user.first_name }} {{ request.user.last_name }}</h3>
+            </strong>
+            <p>{{ request.user.profile.status }}</p>
+            <hr>
+        </div>
+        <div class="info">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            </div>
         </div>
     </main>
 {% endblock container %}

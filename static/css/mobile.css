@@ -10,3 +10,19 @@ body{
 .navbar{
     font-family: 'Maven Pro', sans-serif;
 }
+.picture{
+    display: flex;
+    flex-wrap: wrap;
+}
+.picture img{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;  
+}
+.picture h2{
+    position: absolute;
+}
+.name{
+    text-align: center;
+    top: 10%;
+}
