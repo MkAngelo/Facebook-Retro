@@ -4,15 +4,23 @@
         <strong>facebook</strong>
       </h3>
     </span>
-    <form>
-      <div class="row">
+
+    {% if form.error %}
+        <p class="alert alert-danger">
+            Your username or password did not match. Please try again.
+        </p>
+    {% endif %}
+
+    <form method="POST" action='{% url "users:login" %}'>
+      {% csrf_token %}
+      <div class="row"> 
         <div class="col">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" class="form-control" placeholder="Username" name="username">
         </div>
         <div class="col">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="password">
         </div>
-        <button type="button" class="btn" style="background-color: #91aae0;">Ingresar</button>
+        <button type="submit" class="btn" style="background-color: #91aae0;">Ingresar</button>
       </div>
     </form>
   </nav>
