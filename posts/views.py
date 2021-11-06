@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 posts = [
     {
@@ -59,5 +60,7 @@ posts = [
     }
 ]
 
+
+@login_required
 def home(request):
     return render(request, 'posts/home.html', {'posts':posts})
