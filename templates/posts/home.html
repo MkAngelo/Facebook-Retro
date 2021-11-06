@@ -58,7 +58,7 @@
                 <div class="media-body">
                     <h4 class='mt-0'>{{ post.user.name }}</h4>
                     <small>
-                        {{ post.timestamp }} <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
+                        {{ post.timestamp }} ･ <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
                     </small>                   
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <img class="img-fluid mt-3 border rounded" src="{{ post.photo }}" alt="{{ post.content }}">
             {% endif %}
             <div class="reactions"><br>
-                <a href=""><strong>Like</strong></a> - <a href=""><strong>Comentar</strong></a> - <a href=""><strong>Compartir</strong></a>
+                <a href=""><strong>Like</strong></a> • <a href=""><strong>Comentar</strong></a> • <a href=""><strong>Compartir</strong></a>
                 <div class="counters">
                     <strong>{{ post.likes }}</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
                     <strong>{{ post.comments }}</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
