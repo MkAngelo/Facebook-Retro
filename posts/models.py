@@ -18,6 +18,7 @@ class Post(models.Model):
 
 class Comments(models.Model):
     """User comments"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
@@ -28,6 +29,7 @@ class Comments(models.Model):
 
 class Like(models.Model):
     """Post Like."""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
