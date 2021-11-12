@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Facebook | Home</title>
+{% endblock head_content %}
+
+
+{% block container %}
+    {% load static %}
+
+    <div class="post-now">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <br>
+                <div class="media">
+                    {% if request.user.profile.picture %}
+                        <img src="{{ request.user.profile.picture.url }}" height="50" width="50" class="d-inline-block align-top rounded-circle"/>
+                    {% elif post.user.sex == 'hombre' %}
+                        <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}" width="50px" height="50px">
+                    {% else %}
+                        <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}" width="50px" height="50px">
+                    {% endif %}
+
+                    <div class="media-body">
+                        <h2 class='mt-0'>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+                    </div> 
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="hidden" name="user" value="{{ user.pk}}" />
+                        <input type="hidden" name="profile" value="{{ profile.pk }}"/>
+                        <label for="status">¿Qué estás pensando?</label>
+                        <textarea class="form-control" name='content' id="status" rows="3" style="font-size: 1.6rem;"></textarea>
+                        <label for="exampleFormControlFile1">Sube una foto</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name='photo'>
+                        <button class="btn btn-primary btn-block mt-5" type="submit">Publicar</button>
+                    </div>
+                    <br>
+                </form>
+            </div>  
+        </div>
+    </div>
+    <br>
+
+
+{% endblock container %}

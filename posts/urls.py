@@ -7,5 +7,6 @@ from posts import views
 
 
 urlpatterns = [
-    path('', views.home)
+    path('', views.list_posts, name='home'),
+    path('create/', views.create_post, name='create'),
 ]

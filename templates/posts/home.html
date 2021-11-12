@@ -22,41 +22,36 @@
                         <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}" width="50px" height="50px">
                     {% endif %}
 
-                    <div class="media-body">
-                        <h2 class='mt-0'>{{ request.user.first_name }} {{ request.user.last_name }} {{ request.user.profile.sex }}</h2>
+                    <div class="media-body" style="font-size: 1.7rem;">
+                        <p class='mt-0'>Hola, <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>! ¿Qué hay de nuevo?</p>
                     </div> 
                 </div>
-
-                <form action="">
-                    <div class="form-group">
-                        <label for="status">¿Qué estás pensando?</label>
-                        <textarea class="form-control" id="status" rows="3" style="font-size: 1.6rem;"></textarea>
-                    </div>
-                    <label for="exampleFormControlFile1">Sube una foto</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    <button class="btn btn-primary btn-block mt-5" type="submit">Publicar</button>
-                    <br>
-                </form>
+                <div class="form-group">
+                    <a href="{% url 'posts:create' %}">
+                    <button class="btn btn-primary btn-block mt-5">Crear un Post</button>
+                    </a>
+                </div>
             </div>  
         </div>
     </div>
     <br>
 
+    
     {% for post in posts %}
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <br>
             <div class="media">
-                {% if post.user.picture %}
-                    <img class="mr-3 rounded-circle" src="{{ post.user.picture }}" alt="{{ post.user.name }}" width="50px" height="50px">
+                {% if user.profile.picture %}
+                    <img class="mr-3 rounded-circle" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
                 {% elif post.user.sex == 'H' %}
-                    <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}" width="50px" height="50px">
+                    <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
                 {% else %}
-                    <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}" width="50px" height="50px">
+                    <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
                 {% endif %}
 
                 <div class="media-body">
-                    <h4 class='mt-0'>{{ post.user.name }}</h4>
+                    <h4 class='mt-0'>{{ post.user.get_full_name }}</h4>
                     <small>
                         {{ post.timestamp }} ･ <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
                     </small>                   
@@ -67,20 +62,22 @@
                 <p class="ml-1 mt-1">{{ post.content }}</p>
             </div>
             {% if post.photo %}
-                <img class="img-fluid mt-3 border rounded" src="{{ post.photo }}" alt="{{ post.content }}">
+                <img class="img-fluid mt-3 border rounded" src="{{ post.photo.url }}" alt="{{ post.content }}">
             {% endif %}
             <div class="reactions"><br>
                 <a href=""><strong>Like</strong></a> • <a href=""><strong>Comentar</strong></a> • <a href=""><strong>Compartir</strong></a>
                 <div class="counters">
-                    <strong>{{ post.likes }}</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
-                    <strong>{{ post.comments }}</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
-                    <strong>{{ post.share }}</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
+
+                    <strong>10</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
+                    <strong>10</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
+                    <strong>10</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
                 </div>
             </div> 
         </div>
     </div>
     <br>
     {% endfor %}
+
 
 {% endblock container %}
     

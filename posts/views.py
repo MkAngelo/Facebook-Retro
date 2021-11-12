@@ -1,66 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView,CreateView
+from django.urls.base import reverse_lazy
 
-posts = [
-    {
-        'content': 'Hola a todos esta es una nueva app.',
-        'user': {
-            'name': 'Miguel Sanchez',
-            'picture': 'http://3.bp.blogspot.com/-2Nal4b1K6eg/U0ERumnTTWI/AAAAAAAAhUs/tNThBE-grDY/s1600/Bugs+Bunny+4.jpg'
-        },
-        'timestamp': '12:30 pm',
-        'likes':'30',
-        'comments': '5',
-        'share':'10'
-    },
-    {
-        'content': 'Me esta gustando más esta app que el viejo Facebook.',
-        'user': {
-            'name': 'Diana UwU',
-            'picture': 'https://i2.wp.com/www.bitme.gg/wp-content/uploads/2021/01/Naruto-Chica-realiza-un-cosplay-femenino-de-Naruto-Uzumaki.jpg?fit=1280%2C720&ssl=1'
-        },
-        'timestamp': '2:30 pm',
-        'likes':'30',
-        'comments': '5',
-        'share':'10'
-    },
-    {
-        'content': 'Por fin ganamooooooooooooooossssss :)',
-        'user': {
-            'name': 'Ludovico Peluche',
-            'picture': 'https://yt3.ggpht.com/a/AGF-l79gM-hKd-0McxdM8uLf-FZjO3HM5zYEbseV7A=s900-mo-c-c0xffffffff-rj-k-no'
-        },
-        'photo': 'https://phantom-marca.unidadeditorial.es/a06edc15a885ee473b2f288147ee88dc/resize/1980/f/jpg/assets/multimedia/imagenes/2021/05/31/16224329675106.jpg',
-        'timestamp': '2:30 pm',
-        'likes':'30',
-        'comments': '5',
-        'share':'10'
-    },
-    {
-        'content': 'Hola Bebes :)',
-        'user': {
-            'name': 'Among',
-            'sex': 'H'
-        },
-        'timestamp': '2:30 pm',
-        'likes':'30',
-        'comments': '5',
-        'share':'10'
-    },
-    {
-        'content': 'Hola :)',
-        'user': {
-            'name': 'Frida',
-            'sex': 'M'
-        },
-        'timestamp': '2:30 pm',
-        'likes':'30',
-        'comments': '5',
-        'share':'10'
-    }
-]
+# Forms
+from posts.forms import PostForm
+
+# Models
+from posts.models import Post
 
 
 @login_required
-def home(request):
-    return render(request, 'posts/home.html', {'posts':posts})
+def list_posts(request):
+    """List existing posts."""
+    posts = Post.objects.all().order_by('-timestamp')
+
+    return render(request, 'posts/home.html', {'posts': posts})
+
+
+@login_required
+def create_post(request):
+    """Create new post view."""
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:home')
+
+    else:
+        form = PostForm()
+
+    return render(
+        request=request,
+        template_name='posts/new.html',
+        context={
+            'form': form,
+            'user': request.user,
+            'profile': request.user.profile
+        }
+    )
