@@ -68,8 +68,8 @@
                 <a href=""><strong>Like</strong></a> • <a href=""><strong>Comentar</strong></a> • <a href=""><strong>Compartir</strong></a>
                 <div class="counters">
 
-                    <strong>10</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
-                    <strong>10</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
+                    <strong>{{ post.get_like_count }}</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
+                    <strong>{{ post.get_comment_count }}</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
                     <strong>10</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
                 </div>
             </div> 

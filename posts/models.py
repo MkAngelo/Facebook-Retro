@@ -15,8 +15,16 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.content} by @ {self.user.username}'
 
+    @property
+    def get_comment_count(self):
+        return self.comment_set.all().count()
+    
+    @property
+    def get_like_count(self):
+        return self.like_set.all().count()
 
-class Comments(models.Model):
+
+class Comment(models.Model):
     """User comments"""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -25,7 +33,7 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.user.username
-
+    
 
 class Like(models.Model):
     """Post Like."""
