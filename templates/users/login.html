@@ -8,61 +8,68 @@
 {% block container %}
     {% load static %}
     <main>
+
         <div class="map-log">
             <label for="">Facebook helps you connect and share with the people in your life.</label>
             <img src="{% static 'img/login_map.png' %}">
         </div>
+
         <div class="sign">
             <h1>Sign Up</h1>
             <h3>It's free and anyone can join</h3>
+
             <div class="forms">
-                <form action="">
+
+                {% if error %}
+                    <p class="alert alert-danger">{{ error }}</p>
+                {% endif %}
+
+                <form action='{% url "users:signup" %}' method="POST">
+                    {% csrf_token %}
+
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" placeholder="Juan Carlos">
+                            <input type="text" class="form-control" name="first_name" placeholder="Juan" required=True>
                         </div>
                         <label for="last_name" class="col-sm-2 col-form-label">Apellidos</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="last_name" placeholder="Bodoque">
+                            <input type="text" class="form-control" name="last_name" placeholder="Garcia" required=True>
                         </div>
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="email" placeholder="juan.carlos.bodoque@mail.com">
+                            <input type="email" class="form-control" name="email" placeholder="juangarcia@mail.com" required=True>
                         </div>
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="username" placeholder="JuanCarlosBodoque">
+                            <input type="text" class="form-control" name="username" placeholder="JuanGarcia" required=True>
                         </div>
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" class="form-control" name="passwd" placeholder="Password" required=True>
                         </div>
                         <label for="c_password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="c_password" placeholder="Confirmación Password">
+                            <input type="password" class="form-control" name="passwd_confirmation" placeholder="Confirmación Password" required=True>
                         </div>
-                        <fieldset class="form-group col-sm-5">
-                            <div class="row">
-                              <legend class="col-form-label col-sm-2 pt-0">Género</legend>
-                              <div class="col-sm-10">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="M" checked>
-                                  <label class="form-check-label" for="gridRadios1">
+                        
+                        <label class="col-sm-2 col-form-label">Genero</label>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="M">
+                                <label class="form-check-label" for="exampleRadios1">
                                     Mujer
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="H">
-                                  <label class="form-check-label" for="gridRadios2">
-                                    Hombre
-                                  </label>
-                                </div>
-                              </div>
+                                </label>
+                                <br>
+                                <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="H">
+                                <label class="form-check-label" for="exampleRadios2">
+                                Hombre
+                                </label>
                             </div>
-                          </fieldset>
+                        </div>
+
+                        <button class="btn btn-primary btn-block mt-5" type="submit">Registrar</button> 
                     </div>
-                    <button class="btn btn-primary btn-block mt-5" type="submit">Registrar</button> 
                 </form>
             </div>
         </div>
