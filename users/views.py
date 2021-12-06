@@ -3,7 +3,7 @@
 # Django
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 
@@ -12,6 +12,7 @@ from django.db.utils import IntegrityError
 
 # Models
 from users.models import Profile, User
+from posts.models import Post
 
 # Forms
 from users.forms import SignupForm
@@ -55,6 +56,26 @@ def signup(request):
         return redirect('users:login')
 
     return render(request, 'users/login.html')
+
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    """User Detail View."""
+
+    template_name = 'users/profile.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    queryset = User.objects.all()
+    context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        """Add user's posts to context."""
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['posts'] = (
+            Post.objects.filter(user=user).order_by('-timestamp')
+        )
+        return context
+
 
 class SignUpView(FormView):
     

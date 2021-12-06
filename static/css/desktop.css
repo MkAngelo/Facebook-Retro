@@ -1,4 +1,4 @@
-* {
+/* * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -13,4 +13,9 @@
     min-width: 150px;
     height: 150px;
     background-color: #003476;
+} */
+.picture img{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;  
 }

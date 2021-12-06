@@ -17,7 +17,7 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'users:detail' request.user.username %}">
           {% if request.user.profile.picture %}
             <img src="{{ request.user.profile.picture.url }}" height="25" width="25" class="d-inline-block align-top rounded-circle"/>
           {% elif post.user.sex == 'hombre' %}

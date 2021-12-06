@@ -8,17 +8,19 @@
 {% block container %}
     {% load static %}
     <main class="container-profile">
-        <div class="cover">
-            <img src="{% static 'img/cover.jpg' %}" alt="" width="100%">
-        </div>
-        <div class="picture">
-            {% if request.user.profile.picture %}
-                <img src="{{ request.user.profile.picture.url }}" />
-            {% elif post.user.sex == 'hombre' %}
-                <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}">
-            {% else %}
-                <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}">
-            {% endif %}
+        <div class="profile">
+            <div class="cover">
+                <img src="{% static 'img/cover.jpg' %}" alt="" width="100%">
+            </div>
+            <div class="picture">
+                {% if request.user.profile.picture %}
+                    <img class="rounded-circle" src="{{ request.user.profile.picture.url }}" />
+                {% elif post.user.sex == 'hombre' %}
+                    <img class="rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}">
+                {% else %}
+                    <img class="rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.name }}">
+                {% endif %}
+            </div>
         </div>
         <div class="name">
             <br>
