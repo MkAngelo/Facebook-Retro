@@ -43,7 +43,48 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    {% for post in posts %}
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <br>
+                                <div class="media">
+                                {% if user.profile.picture %}
+                                    <img class="mr-3 rounded-circle" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
+                                {% elif post.user.sex == 'H' %}
+                                    <img class="mr-3 rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
+                                {% else %}
+                                    <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
+                                {% endif %}
+
+                        <div class="media-body">
+                            <h4 class='mt-0'>{{ post.user.get_full_name }}</h4>
+                            <small>
+                                {{ post.timestamp }} ･ <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
+                            </small>                   
+                        </div>
+                        </div>
+                        <div class="content-post">
+                            <br>
+                            <p class="ml-1 mt-1">{{ post.content }}</p>
+                        </div>
+                        {% if post.photo %}
+                            <img class="img-fluid mt-3 border rounded" src="{{ post.photo.url }}" alt="{{ post.content }}">
+                        {% endif %}
+                        <div class="reactions"><br>
+                            <a href=""><strong>Like</strong></a> • <a href=""><strong>Comentar</strong></a> • <a href=""><strong>Compartir</strong></a>
+                            <div class="counters">
+
+                                <strong>10</strong> <img src="{% static 'img/like.png' %}" alt="like" height="20" width="20"> 
+                                <strong>10</strong> <img src="{% static 'img/comment.png' %}" alt="comment" height="20" width="20">  
+                                <strong>10</strong> <img src="{% static 'img/share.png' %}" alt="share" height="20" width="20"> 
+                            </div>
+                        </div> 
+                        </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             </div>
