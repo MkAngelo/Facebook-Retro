@@ -42,7 +42,9 @@
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
                 </li> -->
                 {% if user.username == request.user.username %}
+                    <a href="{% url 'users:update_profile' %}">
                     <button type="button" class="btn btn-success">Editar</button>
+                    </a>
                 {% else %}
                     <button type="button" class="btn btn-success">+ Agregar</button>
                 {% endif %}

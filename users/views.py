@@ -3,8 +3,11 @@
 # Django
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView, DetailView
-from django.urls import reverse_lazy
+from django.db.models import fields
+from django.forms.models import model_to_dict
+from django.http import request
+from django.urls import reverse, reverse_lazy
+from django.views.generic import FormView, DetailView, UpdateView
 from django.shortcuts import render, redirect
 
 # Exception
@@ -86,3 +89,19 @@ class SignUpView(FormView):
     def form_valid(self,form):
         form.save()
         return super().form_valid(form)
+
+
+class UpdateProfile(LoginRequiredMixin, UpdateView):
+    """Update profile view."""
+    template_name = 'users/update.html'
+    model = Profile
+    fields = ['picture', 'status', 'sex', 'relation']
+
+    def get_object(self):
+        """Return user's profile."""
+        return self.request.user.profile
+    
+    def get_success_url(self):
+        """Return to user's profile."""
+        username = self.object.user.username
+        return reverse('users:detail',kwargs={'username':username})
