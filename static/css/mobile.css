@@ -26,3 +26,14 @@ body{
     text-align: center;
     top: 10%;
 }
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:black; 
+     text-decoration:none; 
+     cursor:pointer;  
+}

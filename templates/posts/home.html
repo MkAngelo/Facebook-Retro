@@ -42,6 +42,7 @@
         <div class="col-lg-8 offset-lg-2">
             <br>
             <div class="media">
+                <a href="{% url 'users:detail' post.user.username %}">
                 {% if post.profile.picture %}
                     <img class="mr-3 rounded-circle" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
                 {% elif post.user.sex == 'H' %}
@@ -49,9 +50,12 @@
                 {% else %}
                     <img class="mr-3 rounded-circle" src="{% static 'img/female.jpeg' %}" alt="{{ post.user.get_full_name }}" width="50px" height="50px">
                 {% endif %}
+                </a>
 
                 <div class="media-body">
+                    <a href="{% url 'users:detail' post.user.username %}">
                     <h4 class='mt-0'>{{ post.user.get_full_name }}</h4>
+                    </a>
                     <small>
                         {{ post.timestamp }} ･ <img src="{% static 'img/world.png' %}" alt=" Posted" height="17" width="17">
                     </small>                   
