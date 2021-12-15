@@ -38,9 +38,10 @@
                 <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Información</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                </li>
+                </li> -->
+                <button type="button" class="btn btn-success">+ Agregar</button>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -128,7 +129,7 @@
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td>Releción:</td>
+                                    <td>Relación:</td>
                                     <td>
                                         {% if user.profile.relation == 'R' %} 
                                         En una relación  
