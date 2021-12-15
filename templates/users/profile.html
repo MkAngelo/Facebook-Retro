@@ -14,7 +14,7 @@
             </div>
             <div class="picture">
                 {% if request.user.profile.picture %}
-                    <img class="rounded-circle" src="{{ request.user.profile.picture.url }}" />
+                    <img class="rounded-circle" src="{{ request.user.profile.picture.url }}"/>
                 {% elif post.user.sex == 'hombre' %}
                     <img class="rounded-circle" src="{% static 'img/male.jpeg' %}" alt="{{ post.user.name }}">
                 {% else %}
@@ -89,10 +89,46 @@
                     <div class="row">
                         <div class="col-lg8 offset-lg-2">
                             <br>
+                            <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td>Género:</td>
+                                    <td>
+                                        {% if user.profile.sex == 'H' %}
+                                        Hombre   
+                                        {% else %}
+                                        Mujer
+                                        {% endif %}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                        Amigos:
+                                    </td>
+                                    <td>
+                                        100 friends
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Releción:</td>
+                                    <td>
+                                        {% if user.profile.relation == 'R' %} 
+                                        En una relación  
+                                        {% elif user.profile.relation == 'N' %} 
+                                        Solter@
+                                        {% elif user.profile.relation == 'D' %} 
+                                        Es complicado
+                                        {% else %}  
+                                        Viud@        
+                                        {% endif %}                            
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
             </div>
         </div>
     </main>
