@@ -15,7 +15,6 @@ from posts.models import Post
 def list_posts(request):
     """List existing posts."""
     posts = Post.objects.all().order_by('-timestamp')
-
     return render(request, 'posts/home.html', {'posts': posts})
 
 
