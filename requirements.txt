@@ -1,3 +1,5 @@
 django
 pillow
 django-bootstrap4
+psycopg2-binary
+gunicorn

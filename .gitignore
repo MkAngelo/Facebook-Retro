@@ -285,3 +285,4 @@ cride/media/
 #*.csv
 *.sqlite3
 media/*
+secret.txt
