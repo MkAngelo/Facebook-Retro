@@ -2,7 +2,7 @@
 
 Facebook-Retro is a project based on Facebook, created by Miguel Sanchez ***@mkangelo_***.
 
-The project was developed with *Python and Django.* You can access the project in this [link](http://facebookretro.facebook-retro.tk/login/) or do Pull&Request.
+The project was developed with *Python and Django.* You can access the project in this [link](http://facebookretro.facebook-retro.tk/login/).
 
 >How does it work?
 
